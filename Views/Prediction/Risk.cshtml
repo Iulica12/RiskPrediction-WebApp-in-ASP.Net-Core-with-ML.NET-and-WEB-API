@@ -1,0 +1,40 @@
+﻿@model RiskPrediction.MLModel.ModelInput
+@{
+    ViewData["Title"] = "RISK Prediction Using ML.NET";
+}
+<h2>Risk Prediction using ML.NET</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Risk">
+            <div asp-validation-summary="ModelOnly" class="textdanger"></div>
+          
+            <div class="form-group">
+                <label asp-for="InspectionType" class="controllabel"></label>
+                <input asp-for="InspectionType" class="form-control" />
+                <span asp-validation-for="InspectionType" class="textdanger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ViolationDescription" class="controllabel"></label>
+                <input asp-for="ViolationDescription" class="form-control" />
+                <span asp-validation-for="ViolationDescription" class="textdanger"></span>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Check" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-offset-2 col-md-4">
+        @if (ViewBag.Risk != null)
+        {
+            <h1>Result</h1>
+            <h2>Fare Risk:@ViewBag.Risk</h2>
+        }
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+ }
